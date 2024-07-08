@@ -1,0 +1,38 @@
+{
+    "validUser": {
+      "email": "sonikmhz@gmail.com",
+      "password": "#Aqu@rium911"
+    },
+    "invalidUser": {
+      "invalidCredentials": {
+        "email": "sonik@gmail.com",
+        "password": "#Aqu@rium911"
+      },
+      "emptyField": {
+        "email": "",
+        "password": ""
+      },
+      "emptyUsername": {
+        "email": "",
+        "password": "#Aqu@rium911"
+      },
+  
+      "emptyPassword": {
+        "email": "sonikmhz@gmail.com",
+        "password": " "
+      },
+      "usernameLeadingSpace": {
+        "email": "   sonikmhz@gmail.com",
+        "password": "#Aqu@rium911"
+      },
+      "passwordLeadingSpace": {
+        "email": "sonikmhz@gmail.com",
+        "password": "  #Aqu@rium911"
+      }
+    },
+    "Post":{
+      "text":"Hello World"
+    }
+
+    
+}
