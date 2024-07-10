@@ -3,6 +3,10 @@
       "email": "sonikmhz@gmail.com",
       "password": "#Aqu@rium911"
     },
+    "emailLeadingSpace": {
+        "email": "   sonikmhz@gmail.com",
+        "password": "#Aqu@rium911"
+      },
     "invalidUser": {
       "invalidCredentials": {
         "email": "sonik@gmail.com",
@@ -12,7 +16,7 @@
         "email": "",
         "password": ""
       },
-      "emptyUsername": {
+      "emptyEmail": {
         "email": "",
         "password": "#Aqu@rium911"
       },
@@ -20,10 +24,6 @@
       "emptyPassword": {
         "email": "sonikmhz@gmail.com",
         "password": " "
-      },
-      "usernameLeadingSpace": {
-        "email": "   sonikmhz@gmail.com",
-        "password": "#Aqu@rium911"
       },
       "passwordLeadingSpace": {
         "email": "sonikmhz@gmail.com",

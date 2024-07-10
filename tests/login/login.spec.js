@@ -26,6 +26,15 @@ test.describe("valid login tests", () => {
       /Add question/
     );
   });
+
+  test("email with leading space", async ({ page }) => {
+    await page.locator('//*[@id="email"]').fill(testData.emailLeadingSpace.email);
+    await page.locator('//*[@id="password"]').fill(testData.emailLeadingSpace.password);
+    await page.locator('//*[@id="root"]/div/div[2]/div/div/div/div/div/div[2]/div[2]/div[4]/button').click();
+    await expect(page.locator('//*[@id="root"]/div/div[2]/div/div[2]/div/div[2]/div/div[4]/div/button/div/div/div')).toHaveText(
+      /Add question/
+    );
+  });
 });
 
 test.describe("invalid login tests", () => {
@@ -36,61 +45,42 @@ test.describe("invalid login tests", () => {
     await expect(page.locator("//div[contains(text(),'No account')]")).toHaveText("No account found for this email. Retry, or Sign up for Quora.");
   });
 
-  test.only("empty field", async ({ page }) => {
+  test("empty field", async ({ page }) => {
     await page.locator('//*[@id="email"]').fill(testData.invalidUser.emptyField.email);
     await page.locator('//*[@id="password"]').fill(testData.invalidUser.emptyField.password);
     
-    await expect(page.locator('//*[@id="root"]/div/div[2]/div/div/div/div/div/div[2]/div[2]/div[4]/button').isDisabled());
+    await expect(page.locator('//*[@id="root"]/div/div[2]/div/div/div/div/div/div[2]/div[2]/div[4]/button')).toBeDisabled();
     
   });
 
-  //   test("username empty", async ({ page }) => {
-  //     await page
-  //       .locator("#username")
-  //       .fill(testData.invalidUser.emptyUsername.username);
-  //     await page
-  //       .locator("#password")
-  //       .fill(testData.invalidUser.emptyUsername.password);
-  //     await page.locator("#submit").click();
-  //     const errorMessage = await page.locator("#error").textContent();
-  //     expect(errorMessage).toContain("Your username is invalid!");
-  //   });
+    test("email empty", async ({ page }) => {
+      await page
+        .locator('//*[@id="email"]')
+        .fill(testData.invalidUser.emptyEmail.email);
+      await page
+        .locator('//*[@id="password"]')
+        .fill(testData.invalidUser.emptyEmail.password);
+        await expect(page.locator('//*[@id="root"]/div/div[2]/div/div/div/div/div/div[2]/div[2]/div[4]/button')).toBeDisabled();
+    });
 
-  //   test("Password empty", async ({ page }) => {
-  //     await page
-  //       .locator("#username")
-  //       .fill(testData.invalidUser.emptyPassword.username);
-  //     await page
-  //       .locator("#password")
-  //       .fill(testData.invalidUser.emptyPassword.password);
+    test("Password empty", async ({ page }) => {
+      await page.locator('//*[@id="email"]').fill(testData.invalidUser.emptyPassword.email);
+      await page.locator('//*[@id="password"]').fill(testData.invalidUser.emptyPassword.password);
+      await expect(page.locator('//*[@id="root"]/div/div[2]/div/div/div/div/div/div[2]/div[2]/div[4]/button')).toBeDisabled();
+        // await expect(page.locator("//div[contains(text(),'Incorrect password.')]")).toHaveText("Incorrect password. Reset password");
+    });
 
-  //     console.log(testData.invalidUser.emptyPassword.password);
-  //     await page.locator("#submit").click();
-  //     const errorMessage = await page.locator("#error").textContent();
-  //     expect(errorMessage).toContain("Your password is invalid!");
-  //   });
+    
 
-  //   test("username with leading space", async ({ page }) => {
-  //     await page
-  //       .locator("#username")
-  //       .fill(testData.invalidUser.usernameLeadingSpace.username);
-  //     await page
-  //       .locator("#password")
-  //       .fill(testData.invalidUser.usernameLeadingSpace.password);
-  //     await page.locator("#submit").click();
-  //     const errorMessage = await page.locator("#error").textContent();
-  //     expect(errorMessage).toContain("Your username is invalid!");
-  //   });
-
-  //   test("password with leading space", async ({ page }) => {
-  //     await page
-  //       .locator("#username")
-  //       .fill(testData.invalidUser.passwordLeadingSpace.username);
-  //     await page
-  //       .locator("#password")
-  //       .fill(testData.invalidUser.passwordLeadingSpace.password);
-  //     await page.locator("#submit").click();
-  //     const errorMessage = await page.locator("#error").textContent();
-  //     expect(errorMessage).toContain("Your password is invalid!");
-  //   });
+    test("password with leading space", async ({ page }) => {
+      await page
+        .locator("")
+        .fill(testData.invalidUser.passwordLeadingSpace.username);
+      await page
+        .locator("#password")
+        .fill(testData.invalidUser.passwordLeadingSpace.password);
+      await page.locator("#submit").click();
+      const errorMessage = await page.locator("#error").textContent();
+      expect(errorMessage).toContain("Your password is invalid!");
+    });
 });
